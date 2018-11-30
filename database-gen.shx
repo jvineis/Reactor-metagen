@@ -1,0 +1,5 @@
+#!/bin/bash
+
+anvi-script-reformat-fasta final.contigs.fa -o contigs.fa -l 1000 --simplify-names
+anvi-gen-contigs-database -f contigs.fa -o contigs.db -n 'abm-full-assembly'
+anvi-run-hmms -c contigs.db -T 30

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for i in `cat abm-samples.txt`
+do
+    clusterize -n 8 anvi-profile -c contigs.db -i "$i".bam -T 10 -o "$i"_min7500_profile -M 7500
+done
