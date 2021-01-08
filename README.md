@@ -12,10 +12,10 @@
        gzip "$i"
     done
     
-2.Map the reads. Run these commands from within the directory containing the megahit assembly. The commands are also looking for the quality filtered reads in a directory above which will also need to contain the txt file "reactor-samples.txt"
+2.Map the reads. Run these commands from within the directory containing the megahit assembly. The commands are also looking for the quality filtered reads in a directory above which will also need to contain the txt file "abm-samples.txt"
     
     #!/bin/bash
-    for i in `cat ../reactor-samples.txt`
+    for i in `cat ../abm-samples.txt`
     do
         bowtie2 -x anvi-contigs -f -U ../"$i" -S "$i".sam
         samtools view -bS -F 4 "$i".sam > "$i"-RAW.bam
