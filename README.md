@@ -46,3 +46,9 @@
 
     #!/bin/bash
      anvi-merge *PROFILE/PROFILE.db -c anvi-contigs.db -o 2MPRE-MERGED
+     
+6. After merging, the contigs were binned manually using Anvio. Files required to load an interactive anvio display that includes the placement of contigs into bins can be found here https://figshare.com/account/home#/projects/77799
+
+### Each of the bins collected from the 27 independetly assembled samples were moved to a single directory and characterized for taxonomy, dereplicated, and annotated. The steps for each of these processes are described below.
+
+
