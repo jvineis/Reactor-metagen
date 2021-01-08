@@ -4,13 +4,7 @@
 1. Assemble the reads. You will need all of the metagenomic datasets and the file "quality-filtered-data-list.txt" in a single directory to run the following command. If you have a SLURM management system, please contact me for alternate methods to run this step through an array submission.
      
     #!/bin/bash
-    module load megahit/1.0.6
-    for i in `cat quality-filtered-data-list.txt`
-    do
-       gunzip "$i".gz
-       megahit -r "$i" -o "$i"-MEGAHIT
-       gzip "$i"
-    done
+
 
 2. Map the reads.
     #!/bin/bash
@@ -37,8 +31,7 @@
     for i in `cat ../jhv-samples.txt`
     do
         clusterize anvi-profile -c anvi-contigs.db -T 5 -i "$i".bam -o "$i"-PROFILE
-    done
-    
+    done  
     
 5. merge
 
