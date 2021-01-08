@@ -1,13 +1,11 @@
 # Reactor-metagen
-## Documentation of the metagenomic analysis including MAG collections, MAG annotation, phylogenetics, phylogenomics, and pangenomics.
+## Documentation of the metagenomic analysis including MAG collections, MAG annotation, phylogenetics, phylogenomics, and pangenomics. The quality filtered reads used as the input for the assembly and all mapping steps are found here (figshare link in progress). The metadata for each of the samples is contained in the supplemental table (S1) in the manuscript (link to mscript).
 
-## Lets begin with MAG recovery. Here are the general steps used. The location of directories may be invalid for some of the work here due to the removal of temporary files etc.  Its best to start from the beginning if you are not sure.  
-
-1. Assemble the reads.  
+1. Assemble the reads. You will need all of the metagenomic datasets and the file "quality-filtered-data-list.txt" in a single directory to run the following command. If you have a SLURM management system, please contact me for alternate methods to run this step through an array submission.
      
     #!/bin/bash
     module load megahit/1.0.6
-    for i in `cat abm-sulfate-enriched-samples.txt`
+    for i in `cat quality-filtered-data-list.txt`
     do
        gunzip "$i".gz
        megahit -r "$i" -o "$i"-MEGAHIT
