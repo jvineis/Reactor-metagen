@@ -60,5 +60,48 @@
     #SBATCH --partition=short
 
     gtdbtk classify_wf --batchfile batchfile-genomes.txt -x fa --out_dir GTDBtk-OUTPUT
+    
+### Pangenomics for Chlorobium and Sedimenticola.
+
+1.First you need to search for the Chlorobium genomes that are contained at IMG https://img.jgi.doe.gov/cgi-bin/mer/main.cgi and NCBI (e.g. https://www.ncbi.nlm.nih.gov/assembly/?term=Sedimenticola)
+and download them to your server. Depending on where/how you download the references, you will need to decompress the files etc. The main objective of the first step is to get all the genomes you want to include in your pangenomic analysis ino a single directory
+
+For example, the result for the NCBI search for Sedimenticola resulted in a tar archive. Here is how I decompress and move the fasta files to a single directory where I will stage all of the fastas that I want to include in the pangenomic analysis.
+
+    mkdir /work/jennifer.bowen/SEDIMENTICOLA-PAN/GENOME-FASTAS
+    rsync -HalP ~/Downloads/genome_assemblies_genome_fasta.tar vineis.j@login.discovery.neu.edu:/work/jennifer.bowen/SEDIMENTICOLA-PAN/GENOME-FASTAS/
+    tar -xvf genome_assemblies_genome_fasta.tar
+    cd ncbi-genomes-2021-01-12
+    mv *.fna.gz ../
+    rm -rf ncbi-genomes-2021-01-12
+    
+2.So, step 1 gave you the power to get the genomes yourself, but the genomes used for the pangeomic analysis can be obtained from here (link to figshare) so that you can conduct the same analysis found in the paper without having to collect them from all over the place like I did. The approach found here is the same for both Chlorobium and Sedimenticola pangenomic analysis. This is everything you need to do in order to characterize the genomes/mags in your directory.
+
+    #!/bin/bash
+    #
+    #SBATCH --nodes=1
+    #SBATCH --tasks-per-node=20
+    #SBATCH --time=04:00:00
+    #SBATCH --mem=200Gb
+    #SBATCH --partition=short
+    #SBATCH --array=1-5
+
+    #Anvio- 7.0
+
+    ASSEMBLY=$(sed -n "$SLURM_ARRAY_TASK_ID"p x_jgi-genomes.txt)
+    anvi-script-reformat-fasta ${ASSEMBLY}.fna --simplify-names -r jgi_${ASSEMBLY}-simplify-report.txt -o jgi_${ASSEMBLY}.fa
+    anvi-gen-contigs-database -f jgi_${ASSEMBLY}.fa -o jgi_${ASSEMBLY}.db
+    anvi-run-hmms -c jgi_${ASSEMBLY}.db -T 10
+    anvi-run-scg-taxonomy -c jgi_${ASSEMBLY}.db -T 30
+    anvi-run-hmms -c jgi_${ASSEMBLY}.db -T 10 -H ~/scripts/databas/HMM_co2fix/
+    anvi-run-hmms -c jgi_${ASSEMBLY}.db -T 10 -H ~/scripts/databas/all_fungene_anvio/
+    anvi-run-kegg-kofams -c jgi_${ASSEMBLY}.db -T 40
+    anvi-run-ncbi-cogs -c jgi_${ASSEMBLY}.db -T 40
+    anvi-run-pfams -c jgi_${ASSEMBLY}.db -T 40
+    
+This 
+
+
+
 
 
