@@ -99,7 +99,33 @@ For example, the result for the NCBI search for Sedimenticola resulted in a tar 
     anvi-run-ncbi-cogs -c jgi_${ASSEMBLY}.db -T 40
     anvi-run-pfams -c jgi_${ASSEMBLY}.db -T 40
     
-This 
+3.Now you are pretty much ready to run the pangenomic analysis. Just need to build a file called external-genomes.txt like this
+run from the same GENOME-FASTAS directory that you have been working from.
+
+    ls *.db | cut -f 1 -d "." > 1
+    ls *.db > 2
+    paste 1 2 > external-genomes.txt
+    
+add a header to this file and you are good to go for the next step.  The best looking file ever looks like this with a bunch more genomes and corresponding contigs_db_path below.  
+
+    name    contigs_db_path
+    GCA_000428045	GCA_000428045.db
+    GCA_001007875	GCA_001007875.db
+    GCA_002084045	GCA_002084045.db
+    GCA_002084055	GCA_002084055.db
+
+Here is how you run the pangenomic analysis.
+
+    #!/bin/bash
+    #
+    #SBATCH --nodes=1
+    #SBATCH --tasks-per-node=20
+    #SBATCH --time=05:00:00
+    #SBATCH --mem=200Gb
+    #SBATCH --partition=short
+
+    anvi-gen-genome-storage -e external-genomes.txt -o SEDIMENTICOLA-GENOMES.db
+    anvi-pan-genome -g SEDIMENTICOLA-GENOMES.db --project-name "Sedimenticola_PAN" --output-dir SEDIMENTICOLA-PAN --num-threads 10 --minbit 0.5 --mcl-inflation 10 --min-occurrence 2 --use-ncbi-blast
 
 
 
