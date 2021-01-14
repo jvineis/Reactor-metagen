@@ -138,9 +138,24 @@ Here is how you run the pangenomic analysis.
     #SBATCH --partition=short
 
     anvi-compute-genome-similarity -e external-genomes.txt -o ANI_refined -p SEDIMENTICOLA-PAN/Sedimenticola_PAN-PAN.db -T 30
-    
-5.To display the pangenome, simply run this.
 
+5.Add some data to the pangenomic db
+
+    #!/bin/bash
+    #
+    #SBATCH --nodes=1
+    #SBATCH --tasks-per-node=1
+    #SBATCH --mem=50Gb
+    #SBATCH --partition=express
+
+    anvi-import-misc-data Chlorobium-samples-metadata-for-anvio.txt -p CHLOROBIUM-PAN/Chlorobium_PAN-PAN.db -t layers
+
+6.To display the pangenome, simply run this to log into your server
+
+     
+
+    anvi-display-pan -g SEDIMENTICOLA-refined-GENOMES.db -p SEDIMENTICOLA-PAN-refined/Sedimenticola_PAN-PAN.db --server-only -P 8087
+     
     
 
 
