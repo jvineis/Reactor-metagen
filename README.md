@@ -127,7 +127,21 @@ Here is how you run the pangenomic analysis.
     anvi-gen-genome-storage -e external-genomes.txt -o SEDIMENTICOLA-GENOMES.db
     anvi-pan-genome -g SEDIMENTICOLA-GENOMES.db --project-name "Sedimenticola_PAN" --output-dir SEDIMENTICOLA-PAN --num-threads 10 --minbit 0.5 --mcl-inflation 10 --min-occurrence 2 --use-ncbi-blast
 
+4.So you are now ready to compute ANI among the MAGs.
 
+    #!/bin/bash
+    #    
+    #SBATCH --nodes=1
+    #SBATCH --tasks-per-node=20
+    #SBATCH --time=05:00:00
+    #SBATCH --mem=200Gb
+    #SBATCH --partition=short
+
+    anvi-compute-genome-similarity -e external-genomes.txt -o ANI_refined -p SEDIMENTICOLA-PAN/Sedimenticola_PAN-PAN.db -T 30
+    
+5.To display the pangenome, simply run this.
+
+    
 
 
 
