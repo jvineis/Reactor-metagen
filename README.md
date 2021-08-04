@@ -1,5 +1,5 @@
 # Reactor-metagen
-## Documentation of the metagenomic analysis including MAG collections, MAG annotation, phylogenetics, phylogenomics, and pangenomics. The quality filtered reads used as the input for the assembly and all mapping steps are found at MGRAST mgp84173 (https://www.mg-rast.org/mgmain.html?mgpage=search&search=mgp84173). The metadata for each of the samples is contained in this git (.
+## Documentation of the metagenomic analysis including MAG collections, MAG annotation, phylogenetics, phylogenomics, and pangenomics. The quality filtered reads used as the input for the assembly and all mapping steps are found at MGRAST mgp84173 (https://www.mg-rast.org/mgmain.html?mgpage=search&search=mgp84173). The metadata for each of the samples is contained in this git (Table-S1.xlsx).
 
 1.Assemble the reads. You will need all of the metagenomic datasets and the file "quality-filtered-data-list.txt" in a single directory to run the following command. If you have a SLURM management system, please contact me for alternate methods to run this step through an array submission.
      
@@ -152,10 +152,9 @@ Here is how you run the pangenomic analysis.
 
 6.To display the pangenome, simply run this to log into your server
 
-     
-
     anvi-display-pan -g SEDIMENTICOLA-refined-GENOMES.db -p SEDIMENTICOLA-PAN-refined/Sedimenticola_PAN-PAN.db --server-only -P 8087
-     
+
+
     
 
 
