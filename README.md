@@ -163,11 +163,6 @@
  
 7.Paste together the individual results of the mapping, open in excel and go to work calculating the normalized relative abundance using the number of bases in the MAG (length) and the total number of bases for each sample.
 
-
-
-    
-    
-    
 ### Pangenomics for Chlorobium and Sedimenticola.
 
 1.First you need to search for the Chlorobium genomes that are contained at IMG https://img.jgi.doe.gov/cgi-bin/mer/main.cgi and NCBI (e.g. https://www.ncbi.nlm.nih.gov/assembly/?term=Sedimenticola)
@@ -262,7 +257,7 @@ Here is how you run the pangenomic analysis.
     anvi-display-pan -g SEDIMENTICOLA-refined-GENOMES.db -p SEDIMENTICOLA-PAN-refined/Sedimenticola_PAN-PAN.db --server-only -P 8087
 
 
-    
+Phylogenomics of FTR MAGs and Genomes of Earth's Microbiomes (GEM)s
 
 
 
