@@ -86,7 +86,8 @@
 
     DRAM.py annotate -i '*fa' -o x_DRAM-annotate --gtdb_taxonomy gtdbtk.bac120.summary.tsv
 
-4.Run fungene HMMs
+4.Run fungene HMMs.  I ended up using primarily DRAM annotation for the analysis, but the anvio hmm directory can be found in the main page of this git if you are interested in running it on the genomes in this project or elsewhere. Its called all_fungene_anvio
+
 
 ### Relative abundance calculations for each MAG
 
