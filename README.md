@@ -122,14 +122,14 @@
     binfa=$(sed -n "$SLURM_ARRAY_TASK_ID"p x_samples.txt)
     python x_append-name-to-fasta-deflines.py ${binfa}
 
-3.copy all of the mags in the unique list to the mapping directory.
+4.copy all of the mags in the unique list to the mapping directory.
 
     for i in `cat x_DEREPLICATED-MAG-IDs.txt`; do cp $i'-bdeflines.fa' MAPPING; done
     cd MAPPING
     cat *.fa > x_ALL-DEREP-MAGS.fa
     rm *bdeflines.fa
     
-4.Run the mapping script using bbmap
+5.Run the mapping script using bbmap
 
     #!/bin/bash
     #
@@ -144,11 +144,11 @@
 
     bbmap.sh ref=x_ALL-DEREP-MAGS.fa nodisk=true in=/work/jennifer.bowen/JOE/FTR/QUALITY-FILTERED-READS/${SAMPLE} covstats=MAPPING/${SAMPLE}-covstats.txt scafstats=MAPPING/${SAMPLE}-scafstats.txt out=MAPPING/${SAMPLE}.bam bamscript=to_bam.sh
 
-5.collect a list of the scaffold ids.. required for tabulating coverage of each scaffold.
+6.collect a list of the scaffold ids.. required for tabulating coverage of each scaffold.
 
     grep ">" x_ALL-DEREP-MAGS.fa | sed 's/>//g' > x_ALL-DEREP-MAGS-scaf-ids.txt
 
-6.Tabulate the total number of reads mapped to the MAG using estimate-MAG-coverage-from-bbmap-covstats-v2-FTR.py
+7.Tabulate the total number of reads mapped to the MAG using estimate-MAG-coverage-from-bbmap-covstats-v2-FTR.py
 
     #!/bin/bash
     #
@@ -162,7 +162,7 @@
     SAMPLE=$(sed -n "$SLURM_ARRAY_TASK_ID"p x_sample-names.txt)
     python ~/scripts/estimate-MAG-coverage-from-bbmap-covstats-v2-FTR.py --mappingfile ${SAMPLE}-scafstats.txt --out ${SAMPLE}-bases-recruited-per-MAG.txt --ids x_ALL-DEREP-MAGS-scaf-ids.txt
  
-7.Paste together the individual results of the mapping, open in excel and go to work calculating the normalized relative abundance using the number of bases in the MAG (length) and the total number of bases for each sample.
+8.Paste together the individual results of the mapping, open in excel and go to work calculating the normalized relative abundance using the number of bases in the MAG (length) and the total number of bases for each sample.
 
 ### Pangenomics for Chlorobium and Sedimenticola.
 
