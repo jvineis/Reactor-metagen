@@ -258,7 +258,26 @@ Here is how you run the pangenomic analysis.
     anvi-display-pan -g SEDIMENTICOLA-refined-GENOMES.db -p SEDIMENTICOLA-PAN-refined/Sedimenticola_PAN-PAN.db --server-only -P 8087
 
 
-Phylogenomics of FTR MAGs and Genomes of Earth's Microbiomes (GEM)s
+### Phylogenomics of FTR MAGs and Genomes of Earth's Microbiomes (GEM)s based on the following list of genes
+
+       Ribosom_S12_S23,Ribosomal_L1,Ribosomal_L13,Ribosomal_L14,Ribosomal_L16,Ribosomal_L22,Ribosomal_L23,Ribosomal_L29,Ribosomal_L3,Ribosomal_L4,Ribosomal_L6,Ribosomal_S11,Ribosomal_S13,Ribosomal_S15,Ribosomal_S17,Ribosomal_S19,Ribosomal_S2,Ribosomal_S7,Ribosomal_S8,Ribosomal_S9,SecY
+
+We generated the phylogenomic tree using the following sbatch command that collects the hits for the 21 single copy genes, retains all genomes that contain at least 8 of the genes (13 missing max). 
+
+    #!/bin/bash
+    #
+    #SBATCH --nodes=1
+    #SBATCH --tasks-per-node=1
+    #SBATCH --time=10:00:00
+    #SBATCH --mem=200Gb
+    #SBATCH --partition=short
+
+
+    anvi-get-sequences-for-hmm-hits --external-genomes external-genomes.txt -o x_concatenated-ribosomal-proteins-21.fa --hmm-source Bacteria_71 --return-best-hit --get-aa-sequences --concatenate-genes --gene-names Ribosom_S12_S23,Ribosomal_L1,Ribosomal_L13,Ribosomal_L14,Ribosomal_L16,Ribosomal_L22,Ribosomal_L23,Ribosomal_L29,Ribosomal_L3,Ribosomal_L4,Ribosomal_L6,Ribosomal_S11,Ribosomal_S13,Ribosomal_S15,Ribosomal_S17,Ribosomal_S19,Ribosomal_S2,Ribosomal_S7,Ribosomal_S8,Ribosomal_S9,SecY --max-num-genes-missing-from-bin 10 --align-with famsa
+
+
+    anvi-gen-phylogenomic-tree -f x_concatenated-ribosomal-proteins-21.fa -o x_estuary-and-ftr-ribosomal-tree.tre
+    
 
 
 
