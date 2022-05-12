@@ -277,7 +277,9 @@ We generated the phylogenomic tree using the following sbatch command that colle
 
 
     anvi-gen-phylogenomic-tree -f x_concatenated-ribosomal-proteins-21.fa -o x_estuary-and-ftr-ribosomal-tree.tre
+    python ~/scripts/get-names-from-newick.py x_estuary-and-ftr-ribosomal-tree.tre x_estuary-and-ftr-ribosomal-names.txt
+    cut -f 1 -d "_"  x_estuary-and-ftr-ribosomal-names.txt | sort | uniq > x_estuary-and-ftr-ribosomal-sample-names.txt
+    grep -wf x_estuary-and-ftr-ribosomal-sample-names.txt x_GEMs-DATA-SUPPLEMENTAL.txt > x_GEM-sample-meatdata-from-tree-names.txt
     
-
-
+The x_GEM-sample-metadata-from-tree-names.txt is suppemntal for the associated paper that includes all the relevant metadata for each of the samples included in the phylogenomic tree figure. 
 
