@@ -281,5 +281,16 @@ We generated the phylogenomic tree using the following sbatch command that colle
     cut -f 1 -d "_"  x_estuary-and-ftr-ribosomal-names.txt | sort | uniq > x_estuary-and-ftr-ribosomal-sample-names.txt
     grep -wf x_estuary-and-ftr-ribosomal-sample-names.txt x_GEMs-DATA-SUPPLEMENTAL.txt > x_GEM-sample-meatdata-from-tree-names.txt
     
-The x_GEM-sample-metadata-from-tree-names.txt is suppemntal for the associated paper that includes all the relevant metadata for each of the samples included in the phylogenomic tree figure. 
+The x_GEM-sample-metadata-from-tree-names.txt is suppemntal for the associated paper that includes all the relevant metadata for each of the samples included in the phylogenomic tree figure. I removed all columns from this file except for IMG_TAXON_ID	ECOSYSTEM_SUBTYPE	SPECIFIC_ECOSYSTEM	HABITAT. 
+
+I also ran GTDBtk taxonomy on the GEM genomes usnig the same approach as above and added the FTR taxonomy as well. This file is called x_GEM-ESTUARY-FTR-taxonomy.txt. There are no headers on this file
+
+Then I ran the following script on my local machine to match the metadata in the x_GEM-sample-metadata-from-tree-names.txt file with the taxonomy in the x_GEM-ESTUARY-all-data.txt . Finally, I added the FTR MAGs to this collection of metadata and the taxonomy to allow for a beautiful anvio display that includes metadata and the taxonomy. 
+
+     python get-data-for-tree-names.py x_GEM-sample-metadata-from-tree-names.txt x_GEM-ESTUARY-FTR-taxonomy.txt x_estuary-and-ftr-ribosomal-for-anvio.txt x_estuary-and-ftr-ribosomal-tree-names.txt
+     
+     
+
+
+
 
