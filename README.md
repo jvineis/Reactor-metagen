@@ -262,7 +262,7 @@ Here is how you run the pangenomic analysis.
 
        Ribosom_S12_S23,Ribosomal_L1,Ribosomal_L13,Ribosomal_L14,Ribosomal_L16,Ribosomal_L22,Ribosomal_L23,Ribosomal_L29,Ribosomal_L3,Ribosomal_L4,Ribosomal_L6,Ribosomal_S11,Ribosomal_S13,Ribosomal_S15,Ribosomal_S17,Ribosomal_S19,Ribosomal_S2,Ribosomal_S7,Ribosomal_S8,Ribosomal_S9,SecY
 
-We generated the phylogenomic tree using the following sbatch command that collects the hits for the 21 single copy genes, retains all genomes that contain at least 8 of the genes (13 missing max). 
+We generated the phylogenomic tree using the following sbatch command that collects the hits for the 21 single copy genes, retains all genomes that contain at least 11 of the genes (10 missing max). 
 
     #!/bin/bash
     #
