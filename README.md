@@ -288,8 +288,8 @@ I also ran GTDBtk taxonomy on the GEM genomes usnig the same approach as above a
 Then I ran the following script on my local machine to match the metadata in the x_GEM-sample-metadata-from-tree-names.txt file with the taxonomy in the x_GEM-ESTUARY-all-data.txt . Finally, I added the FTR MAGs to this collection of metadata and the taxonomy to allow for a beautiful anvio display that includes metadata and the taxonomy. 
 
      python get-data-for-tree-names.py x_GEM-sample-metadata-from-tree-names.txt x_GEM-ESTUARY-FTR-taxonomy.txt x_estuary-and-ftr-ribosomal-for-anvio.txt x_estuary-and-ftr-ribosomal-tree-names.txt
-     
-     
+
+### HMMs for nosZ and norB. Please contact Naomi Intrator naomii@princeton.edu regarding the nosZ sequences and hmm. norB reference sequences are included in this git.  
 
 
 
